@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>타임어택</title>
+    <style>
+        .login {
+            width: 300px;
+            height: 300px;
+            border: 2px solid gray;
+            text-align: center;
+            margin: auto;
+        }
+
+    </style>
+    <script>
+
+        $(document).ready(function () {
+        });
+
+        function signup() {
+            let email = $('#user_email').val()
+            let pw = $('#user_pw').val()
+
+            $.ajax({
+                type: "POST",
+                url: "/signup",
+                data: {email_give: email, pw_give: pw},
+                success: function (response) {
+                    if (response['result'] == 'success') {
+                        alert('회원가입이 완료되었습니다.')
+                        window.location.href = '/login'
+                    } else {
+                        alert(response['msg'])
+                    }
+                }
+            })
+        }
+
+    </script>
+</head>
+<body>
+<div class="login">
+    <h3>ID</h3>
+<input type="text" class="id">
+<h3>PW</h3>
+<input type="password" class="pw">
+    <p><button onclick="signup()">회원가입</button></p>
+    <p><button><a href="index.html">로그인</a> </button></p>
+
+</div>
+
+</body>
+</html>
